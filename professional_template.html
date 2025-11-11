@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        body {
+            font-family: 'Segoe UI', 'Courier New', monospace;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0a0e27 0%, #151932 100%);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #0f1420 0%, #1a1f3a 100%);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(26, 31, 58, 0.95) 100%);
+            padding: 40px 30px;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            position: relative;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.5), transparent);
+        }
+        .greeting {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #00ffff;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            letter-spacing: 3px;
+            text-align: center;
+        }
+        .intro {
+            font-size: 13px;
+            color: #b0b0b0;
+            letter-spacing: 0.5px;
+            display: none;
+            text-align: center;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .section-title {
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.08) 0%, rgba(255, 0, 255, 0.08) 100%);
+            color: #00ffff;
+            padding: 15px 20px;
+            font-size: 22px;
+            font-weight: 300;
+            margin: 30px 0 25px 0;
+            border-left: 3px solid #00ffff;
+            border-right: 2px solid #ff00ff;
+            box-shadow: 0 2px 10px rgba(0, 255, 255, 0.1);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #00ffff, transparent);
+        }
+        .option-a {
+            background: linear-gradient(135deg, rgba(0, 100, 200, 0.08) 0%, rgba(0, 255, 255, 0.03) 100%);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-left: 3px solid #00ffff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .option-a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+        .option-b {
+            background: linear-gradient(135deg, rgba(100, 0, 150, 0.08) 0%, rgba(136, 0, 255, 0.03) 100%);
+            border: 1px solid rgba(136, 0, 255, 0.2);
+            border-left: 3px solid #8800ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .option-b:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(136, 0, 255, 0.1);
+        }
+        .option-title {
+            font-weight: 400;
+            font-size: 16px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .option-a .option-title {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+        .option-b .option-title {
+            color: #8800ff;
+            text-shadow: 0 0 10px rgba(136, 0, 255, 0.3);
+        }
+        .price {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00cc00;
+            margin-bottom: 12px;
+            text-shadow: 0 0 10px rgba(0, 204, 0, 0.3);
+            letter-spacing: 1px;
+        }
+        .price-amount {
+            color: #00cc00;
+            font-weight: 600;
+        }
+        .option-text {
+            font-size: 14px;
+            color: #d0d0d0;
+            line-height: 1.6;
+        }
+        .instruction-step {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .step-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ffff 0%, #0099ff 100%);
+            color: #0a0e27;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            font-weight: 600;
+            margin-right: 12px;
+            box-shadow: 0 2px 8px rgba(0, 255, 255, 0.3);
+        }
+        .step-label {
+            font-weight: 500;
+            color: #00ffff;
+            letter-spacing: 1px;
+        }
+        .step-content {
+            color: #c0c0c0;
+            margin-left: 42px;
+            margin-top: 8px;
+        }
+        .code-block {
+            background: linear-gradient(145deg, #0a0e27 0%, #151932 100%);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-left: 3px solid #00ffff;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 15px 0;
+            word-break: break-all;
+            color: #00ffff;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+        }
+        .payment-option {
+            background: linear-gradient(135deg, rgba(0, 100, 150, 0.08) 0%, rgba(0, 200, 255, 0.03) 100%);
+            border: 1px solid rgba(0, 153, 255, 0.2);
+            border-left: 3px solid #00ffff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .payment-title {
+            font-weight: 400;
+            color: #00ffff;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .crypto-symbol {
+            font-size: 26px;
+        }
+        .crypto-name {
+            font-size: 18px;
+            font-weight: 300;
+        }
+        .payment-detail {
+            margin-bottom: 8px;
+            color: #b0b0b0;
+        }
+        .random-label {
+            color: #00ffff;
+            font-weight: 500;
+        }
+        .custom-label {
+            color: #8800ff;
+            font-weight: 500;
+        }
+        .qr-placeholder {
+            padding: 15px;
+            text-align: center;
+            margin: 10px 0;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        .footer-note {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(136, 0, 255, 0.05) 100%);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-left: 3px solid #00ffff;
+            border-right: 3px solid #8800ff;
+            padding: 20px;
+            font-size: 14px;
+            margin-top: 30px;
+            color: #d0d0d0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        .footer-bold {
+            font-weight: 600;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+        .green-price {
+            color: #00cc00;
+            font-weight: 600;
+        }
+        .qr-instruction {
+            color: #a0a0a0;
+            font-size: 13px;
+            margin: 8px 0;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="greeting">TLDs 4 Sale</div>
+            <div class="intro">Thank you for your interest in our .edu email services. Please find our pricing, payment options, and ordering instructions below.</div>
+        </div>
+
+        <div class="content">
+            <div class="section-title">1. PRICING & DELIVERY</div>
+
+            <div class="option-a">
+                <div class="option-title">► Option A: Random .edu Address</div>
+                <div class="price">$20 USD</div>
+                <div class="option-text">Delivery within 12 hours of payment confirmation.</div>
+            </div>
+
+            <div class="option-b">
+                <div class="option-title">► Option B: Custom .edu Address</div>
+                <div class="price">$40 USD</div>
+                <div class="option-text">Have us create an address with your desired username (e.g., your.name@company.edu) within 24 hours of payment confirmation.<br><br>Please specify your desired domain in the payment memo. We will fulfill it if possible (on the rare chance we cannot, we will contact you at the given delivery address to discuss alternative options or to issue a refund).</div>
+            </div>
+
+            <div class="section-title">2. HOW TO ORDER & PAY</div>
+
+            <div class="instruction-step">
+                <div><span class="step-number">1</span><span class="step-label">SELECT YOUR CURRENCY</span></div>
+                <div class="step-content">Below and scan the QR code for your purchase.</div>
+            </div>
+
+            <div class="instruction-step">
+                <div><span class="step-number">2</span><span class="step-label">SEND THE EXACT AMOUNT</span></div>
+                <div class="step-content">For your chosen option.</div>
+            </div>
+
+            <div class="instruction-step">
+                <div><span class="step-number">3</span><span class="step-label">ENTER YOUR DETAILS IN THE MEMO FIELD</span></div>
+                <div class="step-content">Below is a format example to use in the TX memo / notes:
+                <div style="margin: 15px 0; padding: 15px; border: 1px solid rgba(0, 153, 255, 0.3); background: rgba(0, 153, 255, 0.05); border-radius: 6px;">
+                    <div style="color: #00ffff; font-weight: 500; margin-bottom: 10px;">Random .edu:</div>
+                    <div style="color: #d0d0d0; margin-bottom: 15px;">YourDeliveryEmail@gmail.com</div>
+                    <div style="height: 1px; background: linear-gradient(90deg, rgba(0, 255, 255, 0.3) 0%, rgba(136, 0, 255, 0.3) 100%); margin: 10px 0;"></div>
+                    <div style="color: #8800ff; font-weight: 500; margin-bottom: 10px; margin-top: 15px;">Custom .edu:</div>
+                    <div style="color: #d0d0d0;">YourDeliveryEmail@gmail.com | JohnWick@company.edu</div>
+                </div>
+                </div>
+            </div>
+
+            <div class="instruction-step">
+                <div><span class="step-number">4</span><span class="step-label">SAVE YOUR TRANSACTION ID</span></div>
+                <div class="step-content">Keep your TXID for your records.</div>
+            </div>
+
+            <div class="section-title">3. PAYMENT OPTIONS</div>
+
+            <div class="payment-option">
+                <div class="payment-title">
+                    <span class="crypto-symbol">₿</span>
+                    <span class="crypto-name">BITCOIN (BTC) - TAPROOT ADDRESS</span>
+                </div>
+                <div class="payment-detail"><strong><span class="random-label">Random .edu (<span class="green-price">$20</span>):</span></strong> <span class="price-amount">0.0001795 BTC</span></div>
+                <div class="qr-instruction">Scan the QR code below with your wallet to make a payment with Bitcoin</div>
+                <div class="qr-placeholder">
+                    <img src="QR_BTC_20_Dollars.png" alt="Bitcoin $20 QR Code" class="qr-image">
+                </div>
+                <div class="payment-detail"><strong>SEND TO:</strong></div>
+                <div class="code-block">bc1p4us2mm4tpctf59x07ka5tdrtfmsvnlrpddk0x6k6hpay9gxtrchs5ws0v9</div>
+                <div class="payment-detail" style="margin-top: 15px;"><strong><span class="custom-label">Custom .edu (<span class="green-price">$40</span>):</span></strong> <span class="price-amount">0.0003590 BTC</span></div>
+                <div class="qr-instruction">Scan the QR code below with your wallet to make a payment with Bitcoin</div>
+                <div class="qr-placeholder">
+                    <img src="QR_BTC_40_Dollars.png" alt="Bitcoin $40 QR Code" class="qr-image">
+                </div>
+                <div class="payment-detail"><strong>SEND TO:</strong></div>
+                <div class="code-block">bc1p4us2mm4tpctf59x07ka5tdrtfmsvnlrpddk0x6k6hpay9gxtrchs5ws0v9</div>
+            </div>
+
+            <div class="payment-option">
+                <div class="payment-title">
+                    <span class="crypto-symbol">Ξ</span>
+                    <span class="crypto-name">ETHEREUM (ETH)</span>
+                </div>
+                <div class="payment-detail"><strong><span class="random-label">Random .edu (<span class="green-price">$20</span>):</span></strong> <span class="price-amount">0.005714 ETH</span></div>
+                <div class="qr-instruction">Scan the QR code below with your wallet to make a payment with Ethereum</div>
+                <div class="qr-placeholder">
+                    <img src="QR_ETH_20_Dollars.png" alt="Ethereum $20 QR Code" class="qr-image">
+                </div>
+                <div class="payment-detail"><strong>SEND TO:</strong></div>
+                <div class="code-block">0xdc616e93d1db4411c0fa16768b373ab0ee267220</div>
+                <div class="payment-detail" style="margin-top: 15px;"><strong><span class="custom-label">Custom .edu (<span class="green-price">$40</span>):</span></strong> <span class="price-amount">0.011428 ETH</span></div>
+                <div class="qr-instruction">Scan the QR code below with your wallet to make a payment with Ethereum</div>
+                <div class="qr-placeholder">
+                    <img src="QR_ETH_40_Dollars.png" alt="Ethereum $40 QR Code" class="qr-image">
+                </div>
+                <div class="payment-detail"><strong>SEND TO:</strong></div>
+                <div class="code-block">0xdc616e93d1db4411c0fa16768b373ab0ee267220</div>
+            </div>
+
+            <div class="payment-option">
+                <div class="payment-title">
+                    <span class="crypto-symbol">◎</span>
+                    <span class="crypto-name">SOLANA (SOL)</span>
+                </div>
+                <div class="payment-detail"><strong><span class="random-label">Random .edu (<span class="green-price">$20</span>):</span></strong> <span class="price-amount">0.134 SOL</span></div>
+                <div class="qr-instruction">Scan the QR code below with your wallet to make a payment with Solana</div>
+                <div class="qr-placeholder">
+                    <img src="QR_SOL_20_Dollars.png" alt="Solana $20 QR Code" class="qr-image">
+                </div>
+                <div class="payment-detail"><strong>SEND TO:</strong></div>
+                <div class="code-block">7oyuvyjuPqSc6dYdHHx6wZP8BM2tdEunG9CNDvHipkzg</div>
+                <div class="payment-detail" style="margin-top: 15px;"><strong><span class="custom-label">Custom .edu (<span class="green-price">$40</span>):</span></strong> <span class="price-amount">0.267 SOL</span></div>
+                <div class="qr-instruction">Scan the QR code below with your wallet to make a payment with Solana</div>
+                <div class="qr-placeholder">
+                    <img src="QR_SOL_40_Dollars.png" alt="Solana $40 QR Code" class="qr-image">
+                </div>
+                <div class="payment-detail"><strong>SEND TO:</strong></div>
+                <div class="code-block">7oyuvyjuPqSc6dYdHHx6wZP8BM2tdEunG9CNDvHipkzg</div>
+            </div>
+
+            <div class="payment-option">
+                <div class="payment-title">
+                    <span class="crypto-symbol">ᴍ</span>
+                    <span class="crypto-name">MONERO (XMR) - PRIVACY PROTOCOL</span>
+                </div>
+                <div class="payment-detail">Due to Monero's privacy features, we use a Payment ID to deliver your credentials. Please follow these steps carefully.</div>
+                <div class="payment-detail" style="margin-top: 12px;"><strong>1.</strong> Send the correct amount to our wallet address below.</div>
+                <div class="payment-detail"><strong>2.</strong> For the Payment ID, use the same format as the memo:</div>
+                <div class="code-block">Random .edu: YourDeliveryEmail@gmail.com<br>Custom .edu: YourDeliveryEmail@gmail.com | JohnWick@company.edu</div>
+                <div class="payment-detail"><strong>3.</strong> Send the transaction.</div>
+                <div class="payment-detail" style="margin-top: 12px;"><strong>WALLET ADDRESS:</strong></div>
+                <div class="code-block">45rRwAWGL8z1MAbScXsikFeZThhDcuqyEMw1hGuKdiqz86krUsqLdu8eEhAwmdAk1teuK2bhmn3mJSSSo8dM9HQoVDUnw6x</div>
+                <div class="payment-detail" style="margin-top: 12px;"><strong>PAYMENT AMOUNTS:</strong></div>
+                <div class="payment-detail">Random .edu: 0.0628 XMR<br>Custom .edu: 0.1256 XMR</div>
+            </div>
+
+            <div class="section-title">4. RECEIVING .edu LOGIN CREDENTIALS</div>
+
+            <div class="instruction-step">
+                <div class="step-content">Once your payment is confirmed, your .edu email credentials will be sent to the delivery address you provided. Please log in and change your password immediately.</div>
+            </div>
+
+            <div class="section-title">REFUND POLICY</div>
+
+            <div class="instruction-step">
+                <div class="step-content">If you encounter any issues with your purchase, please contact us within 48 hours.</div>
+            </div>
+
+            <div class="footer-note">
+                <span class="footer-bold">► SYSTEM NOTICE:</span> As a token of our appreciation, if you leave a positive comment on the post where you found this offer, we will send a small bonus to the same delivery email address.<br><br>Thank you for choosing TLDs 4 Sale.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
