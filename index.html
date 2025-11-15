@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edu EduMail - Premium .kddi Email for Academic Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary-cyan: #00d4ff;
+            --primary-blue: #0ea5e9;
+            --primary-purple: #7c3aed;
+            --deep-purple: #5b21b6;
+            --primary-green: #10b981;
+            --edu-gold: #fbbf24;
+            --dark-bg: #0a0b1e;
+            --card-bg: rgba(15, 23, 42, 0.7);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-glow: rgba(0, 212, 255, 0.3);
+            --accent-pink: #ec4899;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0b1e 0%, #1e1b4b 25%, #0f172a 50%, #1e1b4b 75%, #0a0b1e 100%);
+            overflow: hidden;
+        }
+        .mesh-gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(14, 165, 233, 0.08) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 20px); }
+        }
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-cyan);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float-up 20s infinite;
+        }
+        @keyframes float-up {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-100vh) scale(1.5); }
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(10, 11, 30, 0.7);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+        }
+        nav.scrolled {
+            padding: 15px 50px;
+            background: rgba(10, 11, 30, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 40px rgba(124, 58, 237, 0.1);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: var(--primary-cyan);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 50px 80px;
+            position: relative;
+            overflow: visible;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+            z-index: 0;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            animation: float 25s ease-in-out infinite reverse;
+            z-index: 0;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-text {
+            animation: slideInLeft 1s ease;
+            position: relative;
+            z-index: 2;
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--primary-cyan);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-cyan);
+            margin-bottom: 20px;
+            animation: pulse 3s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.5); }
+        }
+        .hero h1 {
+            font-size: clamp(48px, 6vw, 64px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-cyan) 50%, var(--primary-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s ease;
+        }
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3), 0 0 20px rgba(124, 58, 237, 0.2);
+        }
+        .btn-secondary {
+            padding: 16px 32px;
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-blue);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-secondary:hover {
+            background: rgba(14, 165, 233, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
+        }
+        .hero-visual {
+            position: relative;
+            animation: slideInRight 1s ease;
+            height: 500px;
+            z-index: 2;
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .kddi-preview {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 1;
+        }
+        .kddi-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.03), rgba(124, 58, 237, 0.03));
+            z-index: -1;
+        }
+        .kddi-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .kddi-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-cyan));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+        }
+        .kddi-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .kddi-info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .kddi-content {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--primary-cyan);
+        }
+        .kddi-subject {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-cyan);
+        }
+        .kddi-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .kddi-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--primary-green);
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--primary-green);
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        #capLayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            perspective: 1200px;
+        }
+        .grad-cap {
+            position: absolute;
+            font-size: 42px;
+            user-select: none;
+            transform-style: preserve-3d;
+            pointer-events: auto;
+            cursor: pointer;
+            opacity: 1;
+        }
+        .cap-inner {
+            display: inline-block;
+            transform-origin: center center;
+        }
+        .cap-shadow {
+            position: absolute;
+            width: 50px;
+            height: 14px;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.05) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform-origin: center center;
+            filter: blur(3px);
+            z-index: 1;
+        }
+        .pricing {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, transparent, rgba(124, 58, 237, 0.05), transparent);
+            position: relative;
+        }
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+        .section-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--primary-cyan);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-cyan);
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: clamp(36px, 4vw, 48px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .pricing-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .pricing-card:hover::before {
+            transform: scaleX(1);
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 212, 255, 0.2);
+            border-color: var(--border-glow);
+        }
+        .pricing-card.featured {
+            border-color: var(--primary-cyan);
+            transform: scale(1.05);
+            background: rgba(15, 23, 42, 0.9);
+        }
+        .pricing-card.featured::after {
+            content: 'ACADEMIC FAVORITE';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-blue));
+            color: var(--dark-bg);
+            padding: 5px 40px;
+            font-size: 12px;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+        .plan-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-cyan));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+        }
+        .plan-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .plan-description {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .plan-price {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .plan-price span {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+        .plan-features {
+            list-style: none;
+            margin: 30px 0;
+        }
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+        .plan-features i {
+            color: var(--primary-cyan);
+            font-size: 16px;
+        }
+        .features {
+            padding: 100px 50px;
+            position: relative;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(15, 23, 42, 0.8);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-blue));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 0 25px rgba(124, 58, 237, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        .payment {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+            position: relative;
+        }
+        .payment-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .payment-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .payment-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+            transition: top 0.5s ease;
+        }
+        .payment-card:hover::before {
+            top: 100%;
+        }
+        .payment-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+        }
+        .crypto-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s ease;
+        }
+        .payment-card:hover .crypto-icon {
+            transform: scale(1.15);
+        }
+        .crypto-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .crypto-ticker {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .crypto-address {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--primary-cyan);
+            margin-bottom: 20px;
+            word-break: break-all;
+            position: relative;
+            z-index: 1;
+        }
+        .xmr-note {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .xmr-note a {
+            color: var(--primary-cyan);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .faq {
+            padding: 100px 50px;
+            position: relative;
+        }
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            border-color: var(--primary-cyan);
+            background: rgba(15, 23, 42, 0.8);
+        }
+        .faq-question {
+            padding: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .faq-question:hover {
+            color: var(--primary-cyan);
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+            color: var(--primary-cyan);
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .faq-item.active .faq-answer {
+            padding: 0 25px 25px;
+            max-height: 300px;
+        }
+        footer {
+            padding: 60px 50px 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 1px solid rgba(0, 212, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        .footer-section h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .footer-section p,
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+        .footer-section a:hover {
+            color: var(--primary-cyan);
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--primary-cyan);
+        }
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            color: var(--dark-bg);
+            transform: translateY(-3px) scale(1.1);
+            border-color: transparent;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(0, 212, 255, 0.2);
+            border-top-color: var(--primary-cyan);
+            border-right-color: var(--primary-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-cta { justify-content: center; }
+            .hero-visual { display: none; }
+            .pricing-card.featured { transform: scale(1); }
+            .payment-methods { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader" id="loader">
+        <div class="loader-circle"></div>
+    </div>
+    <div class="bg-animation">
+        <div class="mesh-gradient"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                edu EduMail
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#payment">Payment</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <i class="fas fa-university"></i> Academic Excellence
+                </div>
+                <h1>Premium .kddi Email for Educational Institutions</h1>
+                <p class="hero-subtitle">
+                    Elevate your academic identity with exclusive .kddi email addresses. 
+                    Perfect for universities, colleges, and educational professionals 
+                    who demand excellence in their digital communications.
+                </p>
+                <div class="hero-cta">
+                    <a href="#pricing" class="btn-primary">
+                        Get Your .kddi <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#features" class="btn-secondary">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div id="capLayer"></div>
+                <div class="edu-preview">
+                    <div class="edu-header">
+                        <div class="edu-avatar">JD</div>
+                        <div class="edu-info">
+                            <h3>Prof. John Doe</h3>
+                            <p>john.doe@university.kddi</p>
+                        </div>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-subject">Welcome to Your Academic .kddi Email</div>
+                        <div class="edu-body">
+                            Experience the prestige of a .kddi academic email address that 
+                            represents excellence in education. Your domain connects you 
+                            to a global network of innovative institutions and scholars.
+                        </div>
+                    </div>
+                    <div class="edu-status">
+                        <div class="status-badge">
+                            <span class="status-dot"></span>
+                            Academic Verified
+                        </div>
+                        <span style="color: var(--text-secondary); font-size: 14px;">
+                            <i class="fas fa-shield-alt"></i> Campus-Grade Security
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="pricing" id="pricing">
+        <div class="section-header">
+            <div class="section-badge">
+                <i class="fas fa-tag"></i> Academic Pricing
+            </div>
+            <h2 class="section-title">Educational Institution Plans</h2>
+            <p class="section-subtitle">
+                Special pricing for academic institutions. 
+                Designed to support educational excellence.
+            </p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-icon">
+                    <i class="fas fa-random"></i>
+                </div>
+                <h3 class="plan-name">Student .kddi Address</h3>
+                <p class="plan-description">
+                    Perfect for students wanting a professional academic email 
+                    that stands out. Quick setup for immediate academic use.
+                </p>
+                <div class="plan-price">
+                    $20<span>USD</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Random username</li>
+                    <li><i class="fas fa-check"></i> @university.kddi domain</li>
+                    <li><i class="fas fa-check"></i> 12-hour delivery</li>
+                    <li><i class="fas fa-check"></i> Full email access</li>
+                    <li><i class="fas fa-check"></i> IMAP/POP3 support</li>
+                    <li><i class="fas fa-check"></i> All Emails are New, Never Used!</li>
+                </ul>
+                <a href="#payment" class="btn-primary" style="width: 100%;">
+                    Order Student Plan
+                </a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="plan-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="plan-name">Faculty .kddi Address</h3>
+                <p class="plan-description">
+                    Customized for faculty and researchers. Your chosen username 
+                    with the prestigious .kddi academic domain.
+                </p>
+                <div class="plan-price">
+                    $40<span>USD</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Custom username</li>
+                    <li><i class="fas fa-check"></i> @{You_specified}.kddi domain</li>
+                    <li><i class="fas fa-check"></i> 24-hour delivery</li>
+                    <li><i class="fas fa-check"></i> Full email access</li>
+                    <li><i class="fas fa-check"></i> IMAP/POP3 support</li>
+                    <li><i class="fas fa-check"></i> Priority academic support</li>
+                </ul>
+                <a href="#payment" class="btn-primary" style="width: 100%;">
+                    Order Faculty Plan
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="features" id="features">
+        <div class="section-header">
+            <div class="section-badge">
+                <i class="fas fa-star"></i> Academic Advantage
+            </div>
+            <h2 class="section-title">Why Educational Institutions Choose .kddi</h2>
+            <p class="section-subtitle">
+                Features designed specifically for the academic community
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="feature-title">Academic Prestige</h3>
+                <p class="feature-description">
+                    Join the elite group of institutions using .kddi domains. 
+                    Your email address reflects academic excellence and innovation.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3 class="feature-title">Campus Integration</h3>
+                <p class="feature-description">
+                    Seamlessly integrate with existing campus systems. 
+                    Compatible with all university email platforms and LMS.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3 class="feature-title">Global Recognition</h3>
+                <p class="feature-description">
+                    Connect with academic institutions worldwide. 
+                    Your .kddi email is recognized across international campuses.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-title">Research-Grade Security</h3>
+                <p class="feature-description">
+                    Protect sensitive academic data with enterprise-level 
+                    encryption and security protocols designed for research.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="feature-title">Faculty Collaboration</h3>
+                <p class="feature-description">
+                    Enhanced features for collaborative research and 
+                    inter-institutional academic projects.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3 class="feature-title">Lifetime Academic Status</h3>
+                <p class="feature-description">
+                    Your .kddi academic email remains yours forever, 
+                    maintaining your professional academic identity.
+                </p>
+            </div>
+        </div>
+    </section>
+       <!-- Payment Section -->
+    <section class="payment" id="payment">
+        <div class="payment-container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-credit-card"></i> Academic Payment Options
+                </div>
+                <h2 class="section-title">Secure Crypto Payments</h2>
+                <p class="section-subtitle">
+                    Modern payment solutions for modern educational institutions
+                </p>
+            </div>
+            <div class="payment-methods">
+                <div class="payment-card">
+                    <div class="crypto-icon">
+                        <i class="fab fa-bitcoin"></i>
+                    </div>
+                    <h3 class="crypto-name">Bitcoin</h3>
+                    <p class="crypto-ticker">BTC</p>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px; justify-content: center;">
+                        <div style="text-align: center;">
+                            <img src="../QR_BTC_20_Dollars.png" alt="BTC $20 QR Code" style="width: 80px; height: 80px; border-radius: 8px; border: 2px solid var(--primary-cyan);">
+                            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;">$20 Student</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="../QR_BTC_40_Dollars.png" alt="BTC $40 QR Code" style="width: 80px; height: 80px; border-radius: 8px; border: 2px solid var(--primary-purple);">
+                            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;">$40 Faculty</p>
+                        </div>
+                    </div>
+                    <div class="crypto-address">
+                        bc1p4us2mm4tpctf59x07ka5tdrtfmsvnlrpddk0x6k6hpay9gxtrchs5ws0v9
+                    </div>
+                    <p style="font-size: 14px; color: var(--text-secondary);">
+                        Student: 0.0001795 BTC<br>
+                        Faculty: 0.0003590 BTC
+                    </p>
+                </div>
+                <div class="payment-card">
+                    <div class="crypto-icon">
+                        <i class="fab fa-ethereum"></i>
+                    </div>
+                    <h3 class="crypto-name">Ethereum</h3>
+                    <p class="crypto-ticker">ETH</p>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px; justify-content: center;">
+                        <div style="text-align: center;">
+                            <img src="../QR_ETH_20_Dollars.png" alt="ETH $20 QR Code" style="width: 80px; height: 80px; border-radius: 8px; border: 2px solid var(--primary-cyan);">
+                            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;">$20 Student</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="../QR_ETH_40_Dollars.png" alt="ETH $40 QR Code" style="width: 80px; height: 80px; border-radius: 8px; border: 2px solid var(--primary-purple);">
+                            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;">$40 Faculty</p>
+                        </div>
+                    </div>
+                    <div class="crypto-address">
+                        0xdc616e93d1db4411c0fa16768b373ab0ee267220
+                    </div>
+                    <p style="font-size: 14px; color: var(--text-secondary);">
+                        Student: 0.005714 ETH<br>
+                        Faculty: 0.011428 ETH
+                    </p>
+                </div>
+                <div class="payment-card">
+                    <div class="crypto-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 class="crypto-name">Solana</h3>
+                    <p class="crypto-ticker">SOL</p>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px; justify-content: center;">
+                        <div style="text-align: center;">
+                            <img src="../QR_SOL_20_Dollars.png" alt="SOL $20 QR Code" style="width: 80px; height: 80px; border-radius: 8px; border: 2px solid var(--primary-cyan);">
+                            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;">$20 Student</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="../QR_SOL_40_Dollars.png" alt="SOL $40 QR Code" style="width: 80px; height: 80px; border-radius: 8px; border: 2px solid var(--primary-purple);">
+                            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;">$40 Faculty</p>
+                        </div>
+                    </div>
+                    <div class="crypto-address">
+                        7oyuvyjuPqSc6dYdHHx6wZP8BM2tdEunG9CNDvHipkzg
+                    </div>
+                    <p style="font-size: 14px; color: var(--text-secondary);">
+                        Student: 0.134 SOL<br>
+                        Faculty: 0.267 SOL
+                    </p>
+                </div>
+            </div>
+            <div class="xmr-note">
+                <i class="fas fa-info-circle"></i> 
+                Privacy-focused payment options available for research institutions. 
+                <a href="mailto:academic@kddi.kddi">Contact us</a> for Monero (XMR) and other methods.
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-question-circle"></i> Academic FAQ
+                </div>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">
+                    Everything educational institutions need to know
+                </p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do educational institutions verify their status?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    We verify educational institutions through official .kddi domain 
+                    verification or by providing institutional documentation. 
+                    This ensures only legitimate academic institutions receive 
+                    .kddi email addresses.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can our university get bulk pricing for multiple departments?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes! We offer special bulk pricing for universities and colleges 
+                    requiring multiple .kddi email addresses. Contact our academic 
+                    sales team for customized institutional packages.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Are .kddi emails compatible with campus learning management systems?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! Our .kddi emails support all standard protocols 
+                    and integrate seamlessly with popular LMS platforms like 
+                    Canvas, Blackboard, Moodle, and custom campus systems.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What happens when students graduate - do they keep their .kddi email?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes! Once purchased, the .kddi email address is permanent. 
+                    Students maintain their professional academic email identity 
+                    throughout their career, providing lasting value.
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About edu EduMail</h3>
+                <p>
+                    Empowering educational institutions worldwide with premium 
+                    .kddi email addresses since 2023. Where academic excellence 
+                    meets digital innovation.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-researchgate"></i></a>
+                    <a href="#"><i class="fas fa-globe"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Academic Resources</h3>
+                <p><a href="#pricing">Institution Pricing</a></p>
+                <p><a href="#features">Campus Features</a></p>
+                <p><a href="#payment">Payment Methods</a></p>
+                <p><a href="#faq">Academic FAQ</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Educational Support</h3>
+                <p><a href="mailto:academic@edu.kddi">academic@edu.kddi</a></p>
+                <p><a href="#">Integration Guide</a></p>
+                <p><a href="#">Campus Documentation</a></p>
+                <p><a href="#">Research Partnerships</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Legal & Compliance</h3>
+                <p>FERPA Compliant</p>
+                <p>GDPR Ready</p>
+                <p>© 2023 edu EduMail Services</p>
+                <p>Serving Global Education</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 edu EduMail Services. All rights reserved. | Empowering Academic Excellence Worldwide</p>
+        </div>
+    </footer>
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const capLayer = document.getElementById("capLayer");
+
+    /* ========== SETTINGS: Tweak these values ==========*/
+    const SETTINGS = {
+        CAP_COUNT: 14,
+        GRAVITY: 1500,
+        AIR_DRAG: 0.12,
+        ANGULAR_DRAG: 0.02,
+        BOUNCE_RESTITUTION: 0.25,
+        GROUND_OFFSET: 12,
+        APEX_MIN: 0.40,
+        APEX_MAX: 0.65,
+        SHADOW_MAX_BLUR: 14,
+        PERSPECTIVE: 1200,
+        HOVER_TRIGGER_DISTANCE: 120,
+        HOVER_TRIGGER_PROBABILITY: 0.18
+    };
+
+    capLayer.style.perspective = SETTINGS.PERSPECTIVE + "px";
+
+    const caps = [];
+    const rect = () => capLayer.getBoundingClientRect();
+
+    function randomBetween(min, max) {
+        return min + Math.random() * (max - min);
+    }
+
+    // Create caps
+    for (let i = 0; i < SETTINGS.CAP_COUNT; i++) {
+        const cap = document.createElement("div");
+        cap.className = "grad-cap";
+        cap.innerHTML = `<span class="cap-inner">🎓</span>`;
+
+        const shadow = document.createElement("div");
+        shadow.className = "cap-shadow";
+
+        capLayer.appendChild(cap);
+        capLayer.appendChild(shadow);
+
+        const hv = rect();
+        const xPct = randomBetween(8, 92);
+        const baseX = hv.width * (xPct / 100);
+        const baseY = hv.height - SETTINGS.GROUND_OFFSET - 40;
+
+        const state = {
+            el: cap,
+            shadowEl: shadow,
+            x: hv.left + baseX,
+            y: hv.top + baseY,
+            vx: 0,
+            vy: 0,
+            ang: Math.random() * 360,
+            angVel: (Math.random() * 600 - 300),
+            w: 40,
+            h: 40,
+            resting: true,
+            canToss: true,
+            lastTossTime: 0
+        };
+
+        const sRect = cap.getBoundingClientRect();
+        state.w = sRect.width;
+        state.h = sRect.height;
+
+        caps.push(state);
+        updateShadow(state);
+        updateTransform(state);
+    }
+
+    function pageToLocal(s) {
+        const r = rect();
+        return {
+            left: s.x - r.left,
+            top: s.y - r.top
+        };
+    }
+
+    function updateTransform(s) {
+        const hv = rect();
+        const local = pageToLocal(s);
+
+        const groundY = hv.height - SETTINGS.GROUND_OFFSET - s.h;
+        const heightAboveGround = Math.max(0, groundY - local.top);
+        const t = Math.max(0, Math.min(1, heightAboveGround / hv.height));
+
+        const scale = 1 - 0.16 * t;
+        const rotX = Math.sin(s.ang * Math.PI / 180) * 38;
+        const rotY = Math.cos(s.ang * Math.PI / 280) * 38;
+        const z = Math.round(150 * t);
+
+        s.el.style.transform =
+            `translate3d(${local.left}px, ${local.top}px, ${z}px)
+             rotateX(${rotX}deg)
+             rotateY(${rotY}deg)
+             rotateZ(${s.ang}deg)
+             scale(${scale})`;
+
+        s.el.style.opacity = 1 - t * 0.45;
+    }
+
+    function updateShadow(s) {
+        const hv = rect();
+        const local = pageToLocal(s);
+
+        const groundY = hv.height - SETTINGS.GROUND_OFFSET;
+        const heightAboveGround = Math.max(0, groundY - (local.top + s.h));
+        const t = Math.max(0, Math.min(1, heightAboveGround / hv.height));
+
+        const scale = 1 - 0.65 * t;
+        const blur = 3 + SETTINGS.SHADOW_MAX_BLUR * t;
+
+        s.shadowEl.style.left = (local.left + s.w / 2 - (40 * scale) / 2) + "px";
+        s.shadowEl.style.top = (groundY - 6) + "px";
+        s.shadowEl.style.transform = `scaleX(${scale}) scaleY(${0.6 * scale})`;
+        s.shadowEl.style.opacity = 0.9 - t;
+        s.shadowEl.style.filter = `blur(${blur}px)`;
+    }
+
+    function toss(s, dir = 0) {
+        if (!s.resting || !s.canToss) return;
+
+        const now = performance.now();
+        if (now - s.lastTossTime < 300) return;
+
+        const hv = rect();
+        const targetApex = hv.height * randomBetween(SETTINGS.APEX_MIN, SETTINGS.APEX_MAX);
+        s.vy = -Math.sqrt(2 * SETTINGS.GRAVITY * targetApex) * randomBetween(0.9, 1.15);
+
+        const hor = randomBetween(160, 380);
+        const side = dir || (Math.random() < 0.5 ? -1 : 1);
+        s.vx = side * hor * randomBetween(0.5, 1.1);
+
+        s.angVel = (Math.random() * 1000 - 500) * randomBetween(0.6, 1.2);
+
+        s.resting = false;
+        s.canToss = false;
+        s.lastTossTime = now;
+    }
+
+    capLayer.addEventListener("mousemove", (e) => {
+        for (const s of caps) {
+            if (!s.resting) continue;
+
+            const dx = e.clientX - (s.x + s.w / 2);
+            const dy = e.clientY - (s.y + s.h / 2);
+            const d = Math.sqrt(dx*dx + dy*dy);
+
+            if (d < SETTINGS.HOVER_TRIGGER_DISTANCE && Math.random() < SETTINGS.HOVER_TRIGGER_PROBABILITY) {
+                const dir = dx < 0 ? -1 : 1;
+                toss(s, dir);
+            }
+        }
+    });
+
+    let last = performance.now();
+    function animate(now) {
+        const dt = Math.min(0.03, (now - last) / 1000);
+        last = now;
+
+        const hv = rect();
+        const leftBound = hv.left - 100;
+        const rightBound = hv.right + 100;
+
+        for (const s of caps) {
+
+            if (s.resting) {
+                updateTransform(s);
+                updateShadow(s);
+                continue;
+            }
+
+            s.vx *= 1 - SETTINGS.AIR_DRAG * dt;
+            s.vy += SETTINGS.GRAVITY * dt;
+            s.angVel *= 1 - SETTINGS.ANGULAR_DRAG * dt;
+
+            s.x += s.vx * dt;
+            s.y += s.vy * dt;
+            s.ang += s.angVel * dt;
+
+            if (s.x < leftBound) { s.x = leftBound; s.vx *= -0.4; }
+            if (s.x > rightBound) { s.x = rightBound; s.vx *= -0.4; }
+
+            const ground = hv.top + hv.height - SETTINGS.GROUND_OFFSET - s.h;
+            if (s.y >= ground) {
+                if (Math.abs(s.vy) > 180) {
+                    s.y = ground;
+                    s.vy = -s.vy * SETTINGS.BOUNCE_RESTITUTION;
+                    s.vx *= 0.75;
+                    s.angVel *= 0.55;
+                } else {
+                    s.y = ground;
+                    s.vx = 0;
+                    s.vy = 0;
+                    s.angVel = 0;
+                    s.resting = true;
+                    s.canToss = true;
+                }
+            }
+
+            updateTransform(s);
+            updateShadow(s);
+        }
+
+        requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+
+    // Particle animation
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 40;
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (20 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', function() {
+            const faqItem = this.parentElement;
+            const allItems = document.querySelectorAll('.faq-item');
+            allItems.forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            });
+            faqItem.classList.toggle('active');
+        });
+    });
+
+    // Remove loader
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            document.getElementById('loader').classList.add('hidden');
+        }, 800);
+    });
+
+    // Payment card copy functionality
+    document.querySelectorAll('.payment-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const address = this.querySelector('.crypto-address');
+            const text = address.textContent;
+            navigator.clipboard.writeText(text);
+            const originalText = text;
+            address.textContent = '✓ Copied!';
+            address.style.color = '#10b981';
+            setTimeout(() => {
+                address.textContent = originalText;
+                address.style.color = '';
+            }, 2000);
+        });
+    });
+
+    createParticles();
+});
+    </script>
+</body>
+</html>
